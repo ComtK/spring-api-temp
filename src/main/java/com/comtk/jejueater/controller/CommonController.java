@@ -7,6 +7,7 @@ import com.comtk.jejueater.repository.UserRepository;
 import com.comtk.jejueater.service.CommonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
@@ -63,5 +64,12 @@ public class CommonController {
         userAuthorityRepository.save(userAuthorityDTO);
 
         return userDTO;
+    }
+
+    @Secured("ROLE_USER")
+    @GetMapping("/info")
+    @ResponseBody
+    private Object info(){
+        return "info page";
     }
 }
